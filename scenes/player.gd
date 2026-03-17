@@ -30,16 +30,22 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	update_animations(direction)
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		current_anim = "Attack/mixamo_com"
+		anim_player.play(current_anim, 0.1)
+	
+	# Вызываем обновление анимаций бега/айдла только если НЕ играем атаку
+	if anim_player.current_animation != "Attack/mixamo_com":
+			update_animations(direction)
 	
 	move_and_slide()
 
 func update_animations(direction: Vector3) -> void:
 	var next_anim = ""
 	if not is_on_floor():
-		next_anim = "jump/mixamo_com"
+		next_anim = "Jump/mixamo_com"
 	elif direction != Vector3.ZERO:
-		next_anim = "run/mixamo_com"
+		next_anim = "Run/mixamo_com"
 	else:
 		next_anim = 'Idle/mixamo_com'
 		

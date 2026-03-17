@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b621vccyvrhbe"]
+
+[ext_resource type="PackedScene" uid="uid://dp53fwd6xmsdn" path="res://scenes/Player.tscn" id="1_kqs1s"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_32lhk"]
+
+[sub_resource type="Sky" id="Sky_7g83o"]
+sky_material = SubResource("PhysicalSkyMaterial_32lhk")
+
+[sub_resource type="Environment" id="Environment_d1c63"]
+background_mode = 2
+sky = SubResource("Sky_7g83o")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D" unique_id=130178324]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=558788707]
+environment = SubResource("Environment_d1c63")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=104395820]
+transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 2.7805946e-08, 0.49999994, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 6, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=214920435]
+transform = Transform3D(3743.604, 0, 0, 0, -0.21215805, 0, 0, 0, -4.2089367, 0, 0, 1.2488619)
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="Player" parent="." unique_id=1228566002 instance=ExtResource("1_kqs1s")]
+transform = Transform3D(-0.9914448, 0, 0.13052626, 0, 1, 0, -0.13052626, 0, -0.9914448, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=704859811]
+transform = Transform3D(1, 8.900362e-08, -1.5049692e-07, 0, 0.86074203, 0.50904137, 1.7484555e-07, -0.50904137, 0.86074203, 0, 2, 5)

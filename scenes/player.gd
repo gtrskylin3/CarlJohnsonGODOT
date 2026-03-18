@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 6
 const MOUSE_SENSITIVITY = 0.003
 
 @onready var anim_player: AnimationPlayer = $Visuals/CarlJohnson/AnimationPlayer2
@@ -67,4 +67,7 @@ func update_animations(direction: Vector3) -> void:
 
 	if current_anim != next_anim:
 		current_anim = next_anim
-		anim_player.play(current_anim, 0.15)
+		if current_anim == "Jump/mixamo_com":
+			anim_player.play(current_anim, 0.5, 1.5)
+		else:
+			anim_player.play(current_anim, 0.15)

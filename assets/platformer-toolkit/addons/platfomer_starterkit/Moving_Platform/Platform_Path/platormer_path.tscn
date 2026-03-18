@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhsbklek6kq3k"]
+
+[ext_resource type="Script" uid="uid://bbr81yokqb0m7" path="res://addons/platfomer_starterkit/Moving_Platform/Platform_Path/platormer_path.gd" id="1_tcdqh"]
+
+[node name="Platormer_Path" type="Path3D"]
+script = ExtResource("1_tcdqh")
+
+[node name="Path_Trail" type="PathFollow3D" parent="."]
+transform = Transform3D(-4.3711378e-08, 0.9999963, -4.3711346e-08, 0, -4.371123e-08, -0.99999905, -0.99999976, -4.371123e-08, 1.9106836e-15, 0, 0, 0)
+tilt_enabled = false
+
+[node name="RemoteTransfom" type="RemoteTransform3D" parent="Path_Trail"]
+update_rotation = false
+update_scale = false

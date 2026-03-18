@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv6pn0k4qy88c"]
+
+[ext_resource type="ArrayMesh" uid="uid://dsutgs4rmj2he" path="res://Demo/Assets/OBJ/Box.obj" id="1_xtwhk"]
+[ext_resource type="Material" uid="uid://l2t4c7up0s8r" path="res://Demo/Material/Tileset.material" id="2_ndm12"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63vqx"]
+
+[node name="Box" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_63vqx")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0)
+mesh = ExtResource("1_xtwhk")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_ndm12")

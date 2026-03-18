@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://dov0xs3thltms" path="res://scenes/player.gd" id="1_v6fml"]
 [ext_resource type="AnimationLibrary" uid="uid://67mfodd1fqxc" path="res://assets/carl/Attack.fbx" id="3_70d11"]
 [ext_resource type="AnimationLibrary" uid="uid://da12t4w75h1do" path="res://assets/carl/Idle.fbx" id="3_qu4a1"]
-[ext_resource type="AnimationLibrary" uid="uid://bmio88yb7cllw" path="res://assets/carl/Jump.fbx" id="4_70d11"]
-[ext_resource type="AnimationLibrary" uid="uid://cee1qfy1ly6sy" path="res://assets/carl/Run.fbx" id="5_cw2d6"]
+[ext_resource type="AnimationLibrary" uid="uid://0jxmgxl7lxiu" path="res://assets/carl/Jump.fbx" id="5_cw2d6"]
+[ext_resource type="AnimationLibrary" uid="uid://dapt8a73kiir6" path="res://assets/carl/Run.fbx" id="6_70d11"]
+[ext_resource type="AnimationLibrary" uid="uid://dbgwn06t26vy6" path="res://assets/carl/StepBack.fbx" id="7_cw2d6"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bruh7"]
 states/Start/position = Vector2(199.2, 100.159996)
@@ -23,8 +24,9 @@ script = ExtResource("1_v6fml")
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Visuals/CarlJohnson" unique_id=794476865]
 libraries/Attack = ExtResource("3_70d11")
 libraries/Idle = ExtResource("3_qu4a1")
-libraries/Jump = ExtResource("4_70d11")
-libraries/Run = ExtResource("5_cw2d6")
+libraries/Jump = ExtResource("5_cw2d6")
+libraries/Run = ExtResource("6_70d11")
+libraries/StepBack = ExtResource("7_cw2d6")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1225857651]
 tree_root = SubResource("AnimationNodeStateMachine_bruh7")
@@ -32,3 +34,8 @@ tree_root = SubResource("AnimationNodeStateMachine_bruh7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=495616172]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_v6fml")
+
+[node name="CamOrigin" type="Node3D" parent="." unique_id=1618211505]
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin" unique_id=1973636180]
+transform = Transform3D(-1, 0, -8.742278e-08, -3.016401e-08, 0.93858945, 0.3450361, 8.2054086e-08, 0.3450361, -0.93858945, -0.30630064, 1.91399, -0.4858091)

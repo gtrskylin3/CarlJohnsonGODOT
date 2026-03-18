@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://1ikdv5fsbvvq"]
+
+[ext_resource type="Script" uid="uid://b68f0b8vojot1" path="res://addons/platfomer_starterkit/Moving_Platform/moving_platform.gd" id="1_68tq7"]
+[ext_resource type="ArrayMesh" uid="uid://b28uif6agke7e" path="res://Demo/Assets/OBJ/Platform.obj" id="2_cavu8"]
+[ext_resource type="Material" uid="uid://l2t4c7up0s8r" path="res://Demo/Material/Tileset.material" id="3_lru3a"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lru3a"]
+height = 0.5
+radius = 0.95
+
+[node name="Moving Platform" type="AnimatableBody3D"]
+script = ExtResource("1_68tq7")
+metadata/_custom_type_script = "uid://b68f0b8vojot1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_lru3a")
+
+[node name="Platform" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_cavu8")
+surface_material_override/0 = ExtResource("3_lru3a")

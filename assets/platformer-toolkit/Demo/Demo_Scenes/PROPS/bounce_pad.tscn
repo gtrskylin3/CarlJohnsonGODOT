@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b887b0tc71igq"]
+
+[ext_resource type="Script" uid="uid://d26niodo44dc7" path="res://addons/platfomer_starterkit/Bounce_Pad/bounce_pad.gd" id="1_h5o30"]
+[ext_resource type="ArrayMesh" uid="uid://djxtirpq1pnnj" path="res://Demo/Assets/OBJ/Pillow.obj" id="2_fr05c"]
+[ext_resource type="Texture2D" uid="uid://bl28q2na78eb6" path="res://Demo/Img/Palette2.png" id="3_h5o30"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu0l3"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.16735566, 0.16735566, 0.16735566, 1)
+grow = true
+grow_amount = 0.015
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr05c"]
+next_pass = SubResource("StandardMaterial3D_hu0l3")
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("3_h5o30")
+uv1_scale = Vector3(-2.5, -2.5, -2.5)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.16735566, 0.16735566, 0.16735566, 1)
+stencil_outline_thickness = 0.015
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_15bgc"]
+size = Vector3(1.5, 1, 1.5)
+
+[node name="Bounce Pad" type="Area3D"]
+script = ExtResource("1_h5o30")
+Bounce_height = 10.0
+metadata/_custom_type_script = "uid://d26niodo44dc7"
+
+[node name="Pillow" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_fr05c")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_fr05c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_15bgc")

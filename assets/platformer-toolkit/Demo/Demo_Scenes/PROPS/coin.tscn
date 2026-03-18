@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqnig8th248xf"]
+
+[ext_resource type="Script" uid="uid://dlq6i1kvr3n7t" path="res://addons/platfomer_starterkit/Item/item.gd" id="1_lkx4l"]
+[ext_resource type="ArrayMesh" uid="uid://b63d0ptghaq61" path="res://Demo/Assets/OBJ/Coin.obj" id="2_5ukgk"]
+[ext_resource type="Material" uid="uid://l2t4c7up0s8r" path="res://Demo/Material/Tileset.material" id="3_68sba"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_63vqx"]
+radius = 0.6
+
+[node name="Coin" type="Area3D"]
+script = ExtResource("1_lkx4l")
+Item_Name = "Coin"
+Item_Amount = 1
+Item_Motion = 1
+Rotation_Axis = Vector3(0, 1, 0)
+Rotation_speed = 1.0
+metadata/_custom_type_script = "uid://dlq6i1kvr3n7t"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_63vqx")
+
+[node name="Coin" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = ExtResource("2_5ukgk")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_68sba")

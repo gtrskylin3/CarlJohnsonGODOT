@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b621vccyvrhbe"]
 
 [ext_resource type="PackedScene" uid="uid://dp53fwd6xmsdn" path="res://scenes/Player.tscn" id="1_kqs1s"]
+[ext_resource type="PackedScene" uid="uid://bp8nrxgwek5df" path="res://assets/FBX/Tree4.fbx" id="2_32lhk"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_32lhk"]
 
@@ -23,12 +24,12 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 2.7805946e-08, 0.49
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=214920435]
-transform = Transform3D(3743.604, 0, 0, 0, -0.21215805, 0, 0, 0, -4.2089367, 0, 0, 1.2488619)
+transform = Transform3D(3743.604, 0, 0, 0, -0.21215805, 0, 0, 0, -4.2089367, -0.022289038, -9.536743e-07, 1.261038)
 use_collision = true
 size = Vector3(50, 1, 50)
 
 [node name="Player" parent="." unique_id=1228566002 instance=ExtResource("1_kqs1s")]
-transform = Transform3D(-0.9914448, 0, 0.13052626, 0, 1, 0, -0.13052626, 0, -0.9914448, 0, 0, 0)
+transform = Transform3D(-0.99320513, 0, 0.11637592, 0, 1, 0, -0.11637592, 0, -0.99320513, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=704859811]
-transform = Transform3D(-0.9998478, -0.00596907, 0.016399886, 0, 0.93969256, 0.34202012, -0.017452396, 0.341968, -0.9395495, 0, 2, -0.6)
+[node name="Tree4" parent="." unique_id=441514873 instance=ExtResource("2_32lhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19605255, 0.12979639, 6.421439)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://iogujdf32mec"]
+
+[ext_resource type="PackedScene" uid="uid://bhltnnaymdbnu" path="res://Demo/Assets/OBJ/Character.glb" id="1_xouh0"]
+
+[node name="Character" instance=ExtResource("1_xouh0")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/scale = Vector3(1, 0.7519051, 1)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"

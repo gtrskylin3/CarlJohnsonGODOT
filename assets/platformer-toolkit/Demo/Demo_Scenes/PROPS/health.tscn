@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cve64t7l7vbnf"]
+
+[ext_resource type="Script" uid="uid://dlq6i1kvr3n7t" path="res://addons/platfomer_starterkit/Item/item.gd" id="1_vh11c"]
+[ext_resource type="ArrayMesh" uid="uid://bigir7r8viq6j" path="res://Demo/Assets/OBJ/Health_pack.obj" id="2_qj8so"]
+[ext_resource type="Material" uid="uid://l2t4c7up0s8r" path="res://Demo/Material/Tileset.material" id="3_oiyv0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_63vqx"]
+radius = 0.6
+
+[node name="Health" type="Area3D"]
+script = ExtResource("1_vh11c")
+Item_Name = "Health"
+Item_Amount = 1
+Item_Motion = 2
+Item_Type = 1
+Bounce_axis = Vector3(0, 1, 0)
+Bounce_height = 0.30000000000000004
+Bounce_speed = 1.0
+metadata/_custom_type_script = "uid://dlq6i1kvr3n7t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_63vqx")
+
+[node name="HealthPack" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.45517224, 0.20692568, 0, -0.20692568, 0.45517224, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("2_qj8so")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_oiyv0")

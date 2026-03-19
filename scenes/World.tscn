@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://b621vccyvrhbe"]
 
+[ext_resource type="Texture2D" uid="uid://bqiythttmyf02" path="res://a4b5f2f65655f4876acf317a8b0e04b4.jpg" id="1_d1c63"]
 [ext_resource type="PackedScene" uid="uid://dp53fwd6xmsdn" path="res://scenes/Player.tscn" id="1_kqs1s"]
 [ext_resource type="PackedScene" uid="uid://bp8nrxgwek5df" path="res://assets/FBX/Tree4.fbx" id="2_32lhk"]
+[ext_resource type="PackedScene" uid="uid://cikc4nk8xy0u1" path="res://scenes/enemy.tscn" id="3_7g83o"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_32lhk"]
 
@@ -14,6 +16,13 @@ sky = SubResource("Sky_7g83o")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1c63"]
+albedo_texture = ExtResource("1_d1c63")
+uv1_scale = Vector3(1000, 1000, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d1c63"]
+material = SubResource("StandardMaterial3D_d1c63")
+
 [node name="World" type="Node3D" unique_id=130178324]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=558788707]
@@ -23,13 +32,48 @@ environment = SubResource("Environment_d1c63")
 transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 2.7805946e-08, 0.49999994, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 6, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=214920435]
-transform = Transform3D(3743.604, 0, 0, 0, -0.21215805, 0, 0, 0, -4.2089367, -0.022289038, -9.536743e-07, 1.261038)
-use_collision = true
-size = Vector3(50, 1, 50)
-
 [node name="Player" parent="." unique_id=1228566002 instance=ExtResource("1_kqs1s")]
 transform = Transform3D(-0.99320513, 0, 0.11637592, 0, 1, 0, -0.11637592, 0, -0.99320513, 0, 0, 0)
 
 [node name="Tree4" parent="." unique_id=441514873 instance=ExtResource("2_32lhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19605255, 0.12979639, 6.421439)
+
+[node name="Enemy" parent="." unique_id=1277959956 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy" unique_id=584497666 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy/Enemy" unique_id=435868756 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy/Enemy/Enemy" unique_id=1511351201 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy/Enemy/Enemy/Enemy" unique_id=653641991 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy/Enemy/Enemy/Enemy/Enemy" unique_id=750626972 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy/Enemy/Enemy/Enemy/Enemy/Enemy" unique_id=920727481 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="Enemy" parent="Enemy/Enemy/Enemy/Enemy/Enemy/Enemy/Enemy" unique_id=827423196 instance=ExtResource("3_7g83o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1159995252]
+transform = Transform3D(520.7501, 0, 0, 0, 1, 0, 0, 0, 900.0878, 0, -0.51392627, 0)
+mesh = SubResource("BoxMesh_d1c63")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1842957778]
+transform = Transform3D(122.2416, 0, 0, 0, 1, 0, 0, 0, 133.76328, 0, -0.5309247, 0)
+use_collision = true

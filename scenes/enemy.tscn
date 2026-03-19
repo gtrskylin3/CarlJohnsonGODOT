@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cikc4nk8xy0u1"]
+
+[ext_resource type="PackedScene" uid="uid://bkb8aisv3yh7o" path="res://assets/FBX/minecraft_animated_mutant_zombie.glb" id="2_4ra3w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6fml"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1228566002]
+
+[node name="Visuals" type="Node3D" parent="." unique_id=787229332]
+
+[node name="Sketchfab_Scene" parent="Visuals" unique_id=1278843660 instance=ExtResource("2_4ra3w")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=495616172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_v6fml")

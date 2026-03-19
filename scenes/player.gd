@@ -6,6 +6,7 @@ const MOUSE_SENSITIVITY = 0.003
 
 @onready var anim_player: AnimationPlayer = $Visuals/CarlJohnson/AnimationPlayer2
 @onready var visuals: Node3D = $Visuals
+@onready var camera_origin: Node3D = $CamOrigin
 @onready var camera: Camera3D = $CamOrigin/Camera3D
 
 var current_anim: String = ""
@@ -16,6 +17,17 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
+		# Добавляем значение к текущему углу
+		#var change_x = event.relative.y * MOUSE_SENSITIVITY
+		#
+		## Чтобы не делать "сальто", ограничиваем угол (примерно от -80 до 80 градусов)
+		## 1.57 радиан — это примерно 90 градусов
+		#rotation.x = clamp(rotation.x + change_x, deg_to_rad(-80), deg_to_rad(80))
+		var new_rotation_x = camera_origin.rotation.x - event.relative.y * MOUSE_SENSITIVITY
+		
+		# Ограничиваем наклон, чтобы не смотреть сквозь текстуры (примерно 80 градусов)
+		camera_origin.rotation.x = clamp(new_rotation_x, deg_to_rad(0), deg_to_rad(25))
+		
 		
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

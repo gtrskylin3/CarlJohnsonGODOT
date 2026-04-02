@@ -1,74 +1,153 @@
 extends CharacterBody3D
 
-enum States {IDLE,PATROL,ATTACK}
+enum States { IDLE, PATROL, ATTACK }
 var state := States.IDLE
 
-var Patrolling : bool = false
-var Patrol_S = true
-var Target : CharacterBody3D
+var target: CharacterBody3D = null
+var health: int = 3
+var patrol_target: Vector3
 
-@export_range(0, 100, 1) var SPEED: int = 3
-@export_range(0.0, 10.0, 1) var Idle_Timer : float = 2.0
-@onready var M_Body = $Character
-@onready var M_Anim = $Character/AnimationPlayer
+@export_range(0, 100, 1) var SPEED: int = 3.5
+@export_range(0.0, 10.0, 0.1) var Idle_Time: float = 2.0
+
+@onready var M_Body = $Visuals/Sketchfab_Scene
+@onready var M_Anim = $E
 
 @export var Patrol_Start: Vector3
 @export var Patrol_End: Vector3
-@onready var Start_Pos = self.global_position
+
+var current_patrol_point := 0
+var idle_timer: float = 0.0
+
+func _ready() -> void:
+	# Если не заданы точки патруля — используем текущую позицию как старт
+	if Patrol_Start == Vector3.ZERO:
+		Patrol_Start = global_position
+	if Patrol_End == Vector3.ZERO:
+		Patrol_End = global_position + Vector3(10, 0, 0)
+	
+	patrol_target = Patrol_Start
+	change_state(States.IDLE)
+
 
 func _physics_process(delta: float) -> void:
 	match state:
 		States.IDLE:
-			idle()
+			idle_state(delta)
 		States.PATROL:
-			if Patrolling == false:
-				if Start_Pos.distance_to(self.global_position) > 1:
-					var direction = (Start_Pos - global_position).normalized()
-					velocity.x = direction.x * SPEED
-					velocity.z = direction.z * SPEED
-				else:
-					Patrol()
+			patrol_state(delta)
 		States.ATTACK:
-			Attack()
+			attack_state(delta)
 	
+	# Гравитация
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	M_Body.rotation.y = lerp_angle(M_Body.rotation.y, atan2(velocity.x,velocity.z),delta * 10)
+	# === ИСПРАВЛЕННЫЙ ПОВОРОТ ===
+	if velocity.length() > 0.5:
+		var target_angle = atan2(velocity.x, velocity.z)
+		target_angle += PI          # ← Вот эта строчка решает проблему "спиной вперёд"
+		M_Body.rotation.y = lerp_angle(M_Body.rotation.y, target_angle, delta * 10.0)
+	
 	move_and_slide()
 
-func changee_state(new_state) -> void:
-	state = new_state
-
-func idle() -> void:
-	M_Anim.play("Idle")
-	velocity.x = move_toward(velocity.x, 0, SPEED)
-	velocity.z = move_toward(velocity.z, 0, SPEED)
+func take_damage(amount: int) -> void:
+	health -= amount
+	print("Враг получил урон! Здоровье: ", health)
 	
-	await get_tree().create_timer(Idle_Timer).timeout
-	changee_state(States.PATROL)
+	if health <= 0:
+		die()
 
-func Patrol() -> void:
-	Patrolling = true
-	pass
+func die() -> void:
+	print("Враг убит!")
+	queue_free()   # или проиграть анимацию смерти
+	
+func change_state(new_state: States) -> void:
+	if state == new_state:
+		return
+	state = new_state
+	
+	# Здесь можно запускать разные анимации при смене состояния
+	match state:
+		States.IDLE:
+			# M_Anim.play("Idle")
+			pass
+		States.PATROL:
+			# M_Anim.play("Walk")
+			pass
+		States.ATTACK:
+			# M_Anim.play("Run") или "Attack"
+			pass
 
-func Attack() ->void:
-	M_Anim.play("Move")
-	if Target.global_position.distance_to(self.global_position) > 1:
-		var direction = (Target.global_position - global_position).normalized()
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
 
-func _on_detection_body_entered(body: Node3D) -> void:
+# ====================== СОСТОЯНИЯ ======================
+
+func idle_state(delta: float) -> void:
+	velocity.x = move_toward(velocity.x, 0, SPEED * 4)
+	velocity.z = move_toward(velocity.z, 0, SPEED * 4)
+	
+	idle_timer -= delta
+	if idle_timer <= 0:
+		change_state(States.PATROL)
+
+
+func patrol_state(delta: float) -> void:
+	var distance_to_target = global_position.distance_to(patrol_target)
+	
+	if distance_to_target < 1.2:
+		# Достигли точки — переключаем на следующую
+		if current_patrol_point == 0:
+			patrol_target = Patrol_End
+			current_patrol_point = 1
+		else:
+			patrol_target = Patrol_Start
+			current_patrol_point = 0
+		
+		# Короткая пауза перед сменой направления
+		change_state(States.IDLE)
+		idle_timer = 0.8
+		return
+	
+	var direction = (patrol_target - global_position).normalized()
+	velocity.x = direction.x * SPEED
+	velocity.z = direction.z * SPEED
+
+
+func attack_state(delta: float) -> void:
+	if not target or not is_instance_valid(target):
+		change_state(States.IDLE)
+		return
+	
+	var distance = global_position.distance_to(target.global_position)
+	
+	if distance > 1.5:  # дистанция преследования
+		var direction = (target.global_position - global_position).normalized()
+		velocity.x = direction.x * SPEED * 1.3   # чуть быстрее при погоне
+		velocity.z = direction.z * SPEED * 1.3
+	else:
+		# Достаточно близко — можно добавить атаку
+		velocity.x = move_toward(velocity.x, 0, SPEED * 3)
+		velocity.z = move_toward(velocity.z, 0, SPEED * 3)
+		# Здесь можно запускать анимацию атаки или наносить урон
+
+
+# ====================== СИГНАЛЫ ======================
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		Target = body
-		changee_state(States.ATTACK)
+		target = body
+		change_state(States.ATTACK)
 
-func _on_detection_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		changee_state(States.IDLE)
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player") and target == body:
+		target = null
+		change_state(States.IDLE)
+
 
 func _on_hit_box_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		body.velocity.y = 5
-		self.queue_free()
+		# Пример: отбрасывание игрока
+		if body.has_method("take_damage") or "velocity" in body:
+			body.velocity.y = 8
+		self.queue_free()  # враг умирает при касании (можно изменить)

@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dtkj2plne3tnl" path="res://assets/FBX/Fence.fbx" id="11_h1bdy"]
 [ext_resource type="PackedScene" uid="uid://br2nqg2povlgt" path="res://assets/FBX/Flag.fbx" id="12_nrtoj"]
 [ext_resource type="PackedScene" uid="uid://dmly5j8qhpo0s" path="res://assets/FBX/Crate.fbx" id="13_i4b1j"]
+[ext_resource type="PackedScene" uid="uid://blkhcfdsj5god" path="res://scenes/spawner.tscn" id="14_c0d7e"]
+[ext_resource type="AudioStream" uid="uid://dqvw8gokvxtka" path="res://scenes/песня.mp3" id="14_i4b1j"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_32lhk"]
 
@@ -41,14 +43,11 @@ environment = SubResource("Environment_d1c63")
 transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 2.7805946e-08, 0.49999994, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 6, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." unique_id=1228566002 instance=ExtResource("1_kqs1s")]
+[node name="Player" parent="." unique_id=1228566002 groups=["player"] instance=ExtResource("1_kqs1s")]
 transform = Transform3D(0.9993907, 0, -0.03489949, 0, 1, 0, 0.03489949, 0, 0.9993907, -2.3967772, 0.016373694, 7.1379466)
 
 [node name="Tree4" parent="." unique_id=1097638288 instance=ExtResource("2_32lhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22819865, 0.39959443, 9.284869)
-
-[node name="Enemy" parent="." unique_id=1277959956 instance=ExtResource("3_7g83o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.305358, 0.17925322, 9.55095)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1159995252]
 transform = Transform3D(520.7501, 0, 0, 0, 1, 0, 0, 0, 900.0878, -1.094383, -0.48260903, 0.8343898)
@@ -185,3 +184,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.129976, 13.038096, 108.74
 
 [node name="Crate5" parent="Map" unique_id=606920915 instance=ExtResource("13_i4b1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.099266, 14.857575, 110.2681)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=892207268]
+stream = ExtResource("14_i4b1j")
+volume_db = -50.0
+autoplay = true
+parameters/looping = true
+
+[node name="Spawner" parent="." unique_id=239191264 instance=ExtResource("14_c0d7e")]
+transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, 0.6249388, -6.9452024, 20.161388, 110.42237)
+enemy_scene = ExtResource("3_7g83o")
+spawn_radius = 20.0

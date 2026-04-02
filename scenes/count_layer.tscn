@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bn4y52u6wbm2x"]
+
+[ext_resource type="Script" uid="uid://byj4wfvu33k08" path="res://scenes/count_layer.gd" id="1_6kyv0"]
+[ext_resource type="PackedScene" uid="uid://bsvrktgmv2lll" path="res://scenes/count.tscn" id="1_bq21h"]
+
+[node name="countLayer" type="CanvasLayer" unique_id=1055130271]
+
+[node name="Count" parent="." unique_id=956128208 instance=ExtResource("1_bq21h")]
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "ЗАМОЧЕНО ЗОМБИ: "
+script = ExtResource("1_6kyv0")

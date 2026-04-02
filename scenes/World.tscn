@@ -12,9 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://dbp7nc7eaq31i" path="res://assets/FBX/Cloud1.fbx" id="9_ygioq"]
 [ext_resource type="PackedScene" uid="uid://dtkj2plne3tnl" path="res://assets/FBX/Fence.fbx" id="11_h1bdy"]
 [ext_resource type="PackedScene" uid="uid://br2nqg2povlgt" path="res://assets/FBX/Flag.fbx" id="12_nrtoj"]
+[ext_resource type="AudioStream" uid="uid://bvyhnf0mbl7l6" path="res://GTA San Andreas Theme Song ♫ [BEST QUALITY!].mp3" id="13_44lqw"]
 [ext_resource type="PackedScene" uid="uid://dmly5j8qhpo0s" path="res://assets/FBX/Crate.fbx" id="13_i4b1j"]
 [ext_resource type="PackedScene" uid="uid://blkhcfdsj5god" path="res://scenes/spawner.tscn" id="14_c0d7e"]
-[ext_resource type="AudioStream" uid="uid://dqvw8gokvxtka" path="res://scenes/песня.mp3" id="14_i4b1j"]
+[ext_resource type="PackedScene" uid="uid://bn4y52u6wbm2x" path="res://scenes/count_layer.tscn" id="16_o1tcx"]
+[ext_resource type="PackedScene" uid="uid://d07ngk1hqq3ae" path="res://scenes/coin_spawner.tscn" id="17_rpuxp"]
+[ext_resource type="PackedScene" uid="uid://dvdw11418w0pu" path="res://coinArea3d.tscn" id="18_nthub"]
+[ext_resource type="PackedScene" uid="uid://c1qxwweejoay7" path="res://scenes/countRub.tscn" id="19_44lqw"]
+[ext_resource type="PackedScene" uid="uid://y5y856mufjt7" path="res://scenes/2_location.tscn" id="20_dwmkc"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_32lhk"]
 
@@ -186,12 +191,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.129976, 13.038096, 108.74
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.099266, 14.857575, 110.2681)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=892207268]
-stream = ExtResource("14_i4b1j")
-volume_db = -50.0
+stream = ExtResource("13_44lqw")
+volume_db = -19.284
 autoplay = true
 parameters/looping = true
 
 [node name="Spawner" parent="." unique_id=239191264 instance=ExtResource("14_c0d7e")]
-transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, 0.6249388, -6.9452024, 20.161388, 110.42237)
+transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, -0.0017045467, -6.9452024, 5.8970604, 47.800415)
 enemy_scene = ExtResource("3_7g83o")
 spawn_radius = 20.0
+
+[node name="countLayer" parent="." unique_id=1055130271 instance=ExtResource("16_o1tcx")]
+
+[node name="CoinSpawner" parent="." unique_id=671817912 instance=ExtResource("17_rpuxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.529, 0, 65.38)
+coin_scene = ExtResource("18_nthub")
+spawn_count = 100
+spawn_area_size = Vector3(100, 0, 100)
+
+[node name="countRub" parent="." unique_id=1033871537 instance=ExtResource("19_44lqw")]
+
+[node name="2Location" parent="." unique_id=1013137111 instance=ExtResource("20_dwmkc")]
+transform = Transform3D(-0.97969794, 0, 0.2004794, 0, 1, 0, -0.2004794, 0, -0.97969794, -11.371959, 19.336273, 117.21132)

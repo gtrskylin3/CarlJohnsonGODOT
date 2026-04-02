@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://clokev81gy0k0"]
+
+[ext_resource type="Texture2D" uid="uid://bqiythttmyf02" path="res://a4b5f2f65655f4876acf317a8b0e04b4.jpg" id="1_06t4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ierpq"]
+line_spacing = 1.0
+paragraph_spacing = 5.0
+font_size = 70
+font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+outline_size = 10
+outline_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l1nd"]
+bg_color = Color(1, 0.96862745, 0.7764706, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ierpq"]
+bg_color = Color(0.77, 0.7474133, 0.60059994, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg6bl"]
+bg_color = Color(1, 0.97466666, 0.81, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuyve"]
+bg_color = Color(0.4745098, 0.6745098, 0.8627451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1ohj"]
+line_spacing = 1.0
+paragraph_spacing = 5.0
+font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+outline_size = 1
+outline_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6l1nd"]
+font_size = 48
+font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+outline_size = 3
+outline_color = Color(0.8666667, 0.5764706, 0.47843137, 1)
+
+[node name="MainMenu" type="Node" unique_id=712937320]
+
+[node name="Hud" type="TextureRect" parent="." unique_id=1170975857]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_06t4h")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud" unique_id=887489423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="main" type="GridContainer" parent="Hud/MarginContainer" unique_id=382545478]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/v_separation = 50
+
+[node name="Heading" type="Label" parent="Hud/MarginContainer/main" unique_id=1559560551]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19607843, 1, 1, 1)
+text = "Carl Johnson VS Zombie "
+label_settings = SubResource("LabelSettings_ierpq")
+autowrap_mode = 2
+
+[node name="button_holder" type="VBoxContainer" parent="Hud/MarginContainer/main" unique_id=1543320572]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="Start" type="Button" parent="Hud/MarginContainer/main/button_holder" unique_id=133777437]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6l1nd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ierpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6bl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cuyve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xg6bl")
+text = "Начать
+"
+
+[node name="Exit" type="Button" parent="Hud/MarginContainer/main/button_holder" unique_id=760500512]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6l1nd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ierpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6bl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cuyve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xg6bl")
+text = "Кончить"
+
+[node name="Heading2" type="Label" parent="Hud/MarginContainer/main" unique_id=261401041]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.22352941, 0.19607843, 0.105882354, 1)
+text = "CREATED BY Кодзима"
+label_settings = SubResource("LabelSettings_l1ohj")
+horizontal_alignment = 2
+
+[node name="levelSelect" type="VBoxContainer" parent="Hud/MarginContainer" unique_id=1620222517]
+visible = false
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="Hud/MarginContainer/levelSelect" unique_id=213707567]
+layout_mode = 2
+text = "Select Level"
+label_settings = SubResource("LabelSettings_6l1nd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level_Holder" type="GridContainer" parent="Hud/MarginContainer/levelSelect" unique_id=718364450]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 30
+columns = 3
+
+[node name="Level1" type="Button" parent="Hud/MarginContainer/levelSelect/Level_Holder" unique_id=613927255 groups=["Level"]]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6l1nd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ierpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6bl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cuyve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xg6bl")
+text = "LEVEL 1"
+
+[node name="button_holder2" type="VBoxContainer" parent="Hud/MarginContainer/levelSelect" unique_id=1884926348]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Back" type="Button" parent="Hud/MarginContainer/levelSelect/button_holder2" unique_id=233339656]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6l1nd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ierpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6bl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cuyve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xg6bl")
+text = "BACK"
+
+[connection signal="pressed" from="Hud/MarginContainer/main/button_holder/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Hud/MarginContainer/main/button_holder/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Hud/MarginContainer/levelSelect/Level_Holder/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Hud/MarginContainer/levelSelect/button_holder2/Back" to="." method="_on_back_pressed"]

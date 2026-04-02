@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c1qxwweejoay7"]
+
+[ext_resource type="Script" uid="uid://c8gf8okfitagy" path="res://scenes/count_rub.gd" id="2_pdi4v"]
+
+[node name="countRub" type="CanvasLayer" unique_id=1055130271]
+
+[node name="Label" type="Label" parent="." unique_id=1741260513]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -434.0
+offset_top = -100.0
+offset_right = -18.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.68235296, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Заработано рублей:  "
+script = ExtResource("2_pdi4v")

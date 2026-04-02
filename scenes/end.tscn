@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bfd114y4b86h8"]
+
+[ext_resource type="PackedScene" uid="uid://dp53fwd6xmsdn" path="res://scenes/Player.tscn" id="1_ovs12"]
+[ext_resource type="Texture2D" uid="uid://bqiythttmyf02" path="res://a4b5f2f65655f4876acf317a8b0e04b4.jpg" id="2_oc5t2"]
+[ext_resource type="AudioStream" uid="uid://br6ikkd8r5on" path="res://Skrillex - Bangarang.mp3" id="3_oc5t2"]
+[ext_resource type="PackedScene" uid="uid://blkhcfdsj5god" path="res://scenes/spawner.tscn" id="4_sf0ys"]
+[ext_resource type="PackedScene" uid="uid://bqc0dq3prjrq1" path="res://scenes/enemy2.tscn" id="5_ovs12"]
+[ext_resource type="PackedScene" uid="uid://cikc4nk8xy0u1" path="res://scenes/enemy.tscn" id="5_stj65"]
+[ext_resource type="PackedScene" uid="uid://bn4y52u6wbm2x" path="res://scenes/count_layer.tscn" id="6_8cwnd"]
+[ext_resource type="PackedScene" uid="uid://d07ngk1hqq3ae" path="res://scenes/coin_spawner.tscn" id="7_liw33"]
+[ext_resource type="PackedScene" uid="uid://dvdw11418w0pu" path="res://coinArea3d.tscn" id="8_wrlrt"]
+[ext_resource type="PackedScene" uid="uid://c1qxwweejoay7" path="res://scenes/countRub.tscn" id="9_gm2es"]
+[ext_resource type="PackedScene" uid="uid://y5y856mufjt7" path="res://scenes/2_location.tscn" id="10_6tafp"]
+[ext_resource type="PackedScene" uid="uid://5bhy234ee0or" path="res://scenes/count_bs.tscn" id="12_njoby"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_32lhk"]
+
+[sub_resource type="Sky" id="Sky_7g83o"]
+sky_material = SubResource("PhysicalSkyMaterial_32lhk")
+
+[sub_resource type="Environment" id="Environment_d1c63"]
+background_mode = 2
+sky = SubResource("Sky_7g83o")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rapm"]
+albedo_texture = ExtResource("2_oc5t2")
+uv1_scale = Vector3(500, 500, 500)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbbny"]
+material = SubResource("StandardMaterial3D_0rapm")
+
+[node name="End" type="Node3D" unique_id=130178324]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=558788707]
+environment = SubResource("Environment_d1c63")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=104395820]
+transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 2.7805946e-08, 0.49999994, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 6, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1228566002 groups=["player"] instance=ExtResource("1_ovs12")]
+transform = Transform3D(0.9993907, 0, -0.03489949, 0, 1, 0, 0.03489949, 0, 0.9993907, -2.3967772, 0.016373694, 7.1379466)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1159995252]
+transform = Transform3D(520.7501, 0, 0, 0, 1, 0, 0, 0, 900.0878, -1.094383, -0.48260903, 0.8343898)
+mesh = SubResource("BoxMesh_xbbny")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1842957778]
+transform = Transform3D(122.2416, 0, 0, 0, 1, 0, 0, 0, 133.76328, 0, -0.5309247, 71.79145)
+use_collision = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=892207268]
+stream = ExtResource("3_oc5t2")
+volume_db = -19.284
+autoplay = true
+parameters/looping = true
+
+[node name="Spawner" parent="." unique_id=239191264 instance=ExtResource("4_sf0ys")]
+transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, 0.6249388, -6.9452024, 20.161388, 110.42237)
+enemy_scene = ExtResource("5_ovs12")
+spawn_radius = 20.0
+
+[node name="countLayer" parent="." unique_id=1055130271 instance=ExtResource("6_8cwnd")]
+
+[node name="CoinSpawner" parent="." unique_id=671817912 instance=ExtResource("7_liw33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.529, 0, 65.38)
+coin_scene = ExtResource("8_wrlrt")
+spawn_count = 100
+spawn_area_size = Vector3(100, 0, 100)
+
+[node name="countRub" parent="." unique_id=1033871537 instance=ExtResource("9_gm2es")]
+
+[node name="2Location" parent="." unique_id=1013137111 instance=ExtResource("10_6tafp")]
+transform = Transform3D(-0.97969794, 0, 0.2004794, 0, 1, 0, -0.2004794, 0, -0.97969794, -11.371959, 19.336273, 117.21132)
+
+[node name="Spawner2" parent="." unique_id=1842224850 instance=ExtResource("4_sf0ys")]
+transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, 0.6249388, -6.9452024, 20.161388, 110.42237)
+enemy_scene = ExtResource("5_stj65")
+spawn_radius = 20.0
+
+[node name="CanvasLayer" parent="." unique_id=572902583 instance=ExtResource("12_njoby")]

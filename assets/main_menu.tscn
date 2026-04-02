@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://qsvobcp873cg"]
+
+[ext_resource type="Texture2D" uid="uid://bqiythttmyf02" path="res://a4b5f2f65655f4876acf317a8b0e04b4.jpg" id="1_nxgnl"]
+[ext_resource type="Script" uid="uid://cory46oyc2rj7" path="res://assets/main_menu.gd" id="1_udhl6"]
+[ext_resource type="AudioStream" uid="uid://mohh81nsdd5l" path="res://assets/y2mate_OQnyD9i.mp3" id="3_0quft"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxgnl"]
+font_size = 100
+font_color = Color(0.7921569, 0, 0, 1)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l1nd"]
+bg_color = Color(1, 0.96862745, 0.7764706, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ierpq"]
+bg_color = Color(0.77, 0.7474133, 0.60059994, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg6bl"]
+bg_color = Color(1, 0.97466666, 0.81, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuyve"]
+bg_color = Color(0.4745098, 0.6745098, 0.8627451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1ohj"]
+line_spacing = 1.0
+paragraph_spacing = 5.0
+font_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+outline_size = 1
+outline_color = Color(0.8627451, 0.5803922, 0.4745098, 1)
+
+[node name="MainMenu" type="Node" unique_id=316280887]
+script = ExtResource("1_udhl6")
+
+[node name="Hud" type="TextureRect" parent="." unique_id=983502002]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_nxgnl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud" unique_id=63157873]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="main" type="GridContainer" parent="Hud/MarginContainer" unique_id=1332086862]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/v_separation = 50
+
+[node name="Heading" type="Label" parent="Hud/MarginContainer/main" unique_id=1097034625]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+text = "Carl Johnson VS Zombie "
+label_settings = SubResource("LabelSettings_nxgnl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="button_holder" type="VBoxContainer" parent="Hud/MarginContainer/main" unique_id=1236277550]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 30
+
+[node name="Start" type="Button" parent="Hud/MarginContainer/main/button_holder" unique_id=1091168682]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95723766, 5.1018596e-06, 0.5952815, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_6l1nd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ierpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6bl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cuyve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xg6bl")
+text = "Начать
+"
+flat = true
+
+[node name="Exit" type="Button" parent="Hud/MarginContainer/main/button_holder" unique_id=1208895859]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87027806, 0, 0.43080577, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_6l1nd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ierpq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6bl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cuyve")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xg6bl")
+text = "Кончить"
+flat = true
+
+[node name="Heading2" type="Label" parent="Hud/MarginContainer/main" unique_id=2127873992]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.22352941, 0.19607843, 0.105882354, 1)
+text = "CREATED BY Кодзима"
+label_settings = SubResource("LabelSettings_l1ohj")
+horizontal_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=443276545]
+stream = ExtResource("3_0quft")
+volume_db = 3.5
+autoplay = true
+
+[connection signal="pressed" from="Hud/MarginContainer/main/button_holder/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Hud/MarginContainer/main/button_holder/Exit" to="." method="_on_exit_pressed"]

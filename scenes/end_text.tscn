@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://sm7rjk8v8c53"]
+
+[ext_resource type="Script" uid="uid://cfw6egixj63k0" path="res://scenes/end.gd" id="1_s8tjh"]
+[ext_resource type="Texture2D" uid="uid://sueb3tbfs0s0" path="res://blogger-dmitry-kuplinov_33.jpg" id="2_7br70"]
+
+[node name="EndText" type="Node2D" unique_id=1737514289]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1165512529]
+script = ExtResource("1_s8tjh")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=346308167]
+offset_left = 68.0
+offset_top = 83.0
+offset_right = 1831.0
+offset_bottom = 1016.0
+theme_override_colors/font_color = Color(1.8247963, 1.4754243, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Автор идеи:
+Даниил Чернов
+
+Programming:
+Даниил: 99% code 
+Grok + Gemini + ChatGP: 1% code
+
+Game Design: 
+Роман Чернов
+
+Поздравляю вы прошли демо версию игры 
+Если вам понравилось то поддержите автора киньте  трейд в стиме: 
+https://steamcommunity.com/id/idivjopusukablyat"
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=487907736]
+anchors_preset = -1
+anchor_right = 0.13800001
+anchor_bottom = 0.074
+offset_left = 1230.0
+offset_top = 4.0
+offset_right = 1651.3359
+offset_bottom = 139.528
+theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.14117648, 0.9490196, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Закрыть"
+
+[node name="Hud" type="TextureRect" parent="." unique_id=1518702401]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -63.0
+offset_right = 1986.0
+offset_bottom = 1100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_7br70")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer" method="_on_button_pressed"]

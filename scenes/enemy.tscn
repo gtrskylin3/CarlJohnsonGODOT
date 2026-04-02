@@ -2,21 +2,33 @@
 
 [ext_resource type="Script" uid="uid://bmve4v6j7u1r0" path="res://assets/FBX/Enemy/enemy.gd" id="1_md0e3"]
 [ext_resource type="PackedScene" uid="uid://bkb8aisv3yh7o" path="res://assets/FBX/minecraft_animated_mutant_zombie.glb" id="2_4ra3w"]
+[ext_resource type="AudioStream" uid="uid://e4qhyvo3xqni" path="res://big_smoke_oh_my_god.mp3" id="3_4ra3w"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6fml"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_md0e3"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4ra3w"]
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1228566002]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_md0e3")
+SPEED = null
+Idle_Time = null
+JUMP_VELOCITY = null
+Patrol_Start = null
+min_distance_to_other_enemies = null
+separation_speed = null
+Patrol_End = null
 
 [node name="Visuals" type="Node3D" parent="." unique_id=787229332]
 
-[node name="Sketchfab_Scene" parent="Visuals" unique_id=1278843660 instance=ExtResource("2_4ra3w")]
+[node name="zombie" parent="Visuals" unique_id=1278843660 instance=ExtResource("2_4ra3w")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=495616172]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_v6fml")
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.024, 4.9319105, 0.125)
+shape = SubResource("CapsuleShape3D_4ra3w")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=688769796]
 
@@ -24,5 +36,16 @@ shape = SubResource("CapsuleShape3D_v6fml")
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 0, 0, 0)
 shape = SubResource("CylinderShape3D_md0e3")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=18135945]
+stream = ExtResource("3_4ra3w")
+volume_db = -20.0
+
+[node name="Area3D2" type="Area3D" parent="." unique_id=1403968637]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" unique_id=697237586]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("CylinderShape3D_4ra3w")
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_player_2_body_entered"]

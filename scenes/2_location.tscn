@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://y5y856mufjt7"]
+
+[ext_resource type="PackedScene" uid="uid://bvrab7gxyk5df" path="res://assets/big_smoke.glb" id="1_0jn15"]
+[ext_resource type="Script" uid="uid://m7yngwdk0da5" path="res://scenes/2_location_teleport.gd" id="1_jflyg"]
+[ext_resource type="AudioStream" uid="uid://e4qhyvo3xqni" path="res://big_smoke_oh_my_god.mp3" id="3_28svl"]
+[ext_resource type="PackedScene" uid="uid://dc6vdeme1tia6" path="res://scenes/allert.tscn" id="4_28svl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j581h"]
+
+[node name="2Location" type="Area3D" unique_id=1013137111]
+script = ExtResource("1_jflyg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1185207829]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("BoxShape3D_j581h")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1433104992 instance=ExtResource("1_0jn15")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1804971785]
+stream = ExtResource("3_28svl")
+volume_db = 2.332
+
+[node name="CanvasLayer" parent="." unique_id=1120157207 instance=ExtResource("4_28svl")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

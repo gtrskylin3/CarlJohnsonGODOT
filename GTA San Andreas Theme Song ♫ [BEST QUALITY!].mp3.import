@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvyhnf0mbl7l6"
+path="res://.godot/imported/GTA San Andreas Theme Song ♫ [BEST QUALITY!].mp3-ce967c35bb9ad7b3d3097318124c306f.mp3str"
+
+[deps]
+
+source_file="res://GTA San Andreas Theme Song ♫ [BEST QUALITY!].mp3"
+dest_files=["res://.godot/imported/GTA San Andreas Theme Song ♫ [BEST QUALITY!].mp3-ce967c35bb9ad7b3d3097318124c306f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

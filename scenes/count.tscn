@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bsvrktgmv2lll"]
+
+[node name="Count" type="Label" unique_id=956128208]
+offset_right = 193.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 40
+text = "ЗАМОЧЕНО ЗОМБИ: 0"

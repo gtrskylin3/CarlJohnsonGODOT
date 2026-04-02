@@ -7,6 +7,10 @@
 [ext_resource type="AnimationLibrary" uid="uid://0jxmgxl7lxiu" path="res://assets/carl/Jump.fbx" id="5_cw2d6"]
 [ext_resource type="AnimationLibrary" uid="uid://dapt8a73kiir6" path="res://assets/carl/Run.fbx" id="6_70d11"]
 [ext_resource type="AnimationLibrary" uid="uid://dbgwn06t26vy6" path="res://assets/carl/StepBack.fbx" id="7_cw2d6"]
+[ext_resource type="AudioStream" uid="uid://g2ndkp0qjct" path="res://assets/roblox-death-sound_1.mp3" id="8_khinc"]
+[ext_resource type="Texture2D" uid="uid://cj53igr2bbjq4" path="res://89877e31c3b0b4ef96608bb2fe6d24d0.png" id="9_6eyey"]
+[ext_resource type="Texture2D" uid="uid://da42ihvuf43uc" path="res://wallpaperflare.com_wallpaper (21).png" id="10_d3wef"]
+[ext_resource type="AudioStream" uid="uid://bofwve8spgv7o" path="res://assets/2ac4f20e0936336.mp3" id="11_d3wef"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bruh7"]
 states/Start/position = Vector2(199.2, 100.159996)
@@ -15,6 +19,7 @@ graph_offset = Vector2(98.524864, 0)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6fml"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1228566002]
+collision_mask = 3
 script = ExtResource("1_v6fml")
 
 [node name="Visuals" type="Node3D" parent="." unique_id=787229332]
@@ -42,3 +47,33 @@ transform = Transform3D(1, 0, 0, 0, 0.9999843, -0.0056024864, 0, 0.0056024864, 0
 transform = Transform3D(-1, 0, -8.742278e-08, -3.016401e-08, 0.93858945, 0.3450361, 8.2054086e-08, 0.3450361, -0.93858945, -0.30630064, 1.91399, -0.4858091)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1938984566]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=943247588]
+stream = ExtResource("8_khinc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1973935002]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=912816752]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -292.0
+offset_top = 787.0
+offset_right = 264.0
+offset_bottom = 1227.0
+grow_horizontal = 0
+scale = Vector2(0.50028384, 0.45242098)
+texture = ExtResource("9_6eyey")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer" unique_id=1164973956]
+offset_left = 538.0
+offset_top = -144.00002
+offset_right = 2538.0
+offset_bottom = 981.0
+scale = Vector2(1.0616914, 0.5273042)
+texture = ExtResource("10_d3wef")
+
+[node name="attacksound" type="AudioStreamPlayer" parent="." unique_id=679612071]
+stream = ExtResource("11_d3wef")
+volume_db = 1.0

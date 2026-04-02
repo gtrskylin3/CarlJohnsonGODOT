@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dvdw11418w0pu"]
+
+[ext_resource type="Script" uid="uid://cvet6dtyseha1" path="res://scenes/coin.gd" id="1_d6no6"]
+[ext_resource type="PackedScene" uid="uid://suo6rdnsqejx" path="res://coin.tscn" id="2_5tedt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2mj1i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d6no6"]
+
+[node name="CoinArea3d" type="Area3D" unique_id=353635238]
+script = ExtResource("1_d6no6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1217910132]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("CylinderShape3D_2mj1i")
+
+[node name="Coin" parent="." unique_id=380735859 instance=ExtResource("2_5tedt")]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Coin" unique_id=505651204]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coin/CharacterBody3D" unique_id=125234953]
+shape = SubResource("SphereShape3D_d6no6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

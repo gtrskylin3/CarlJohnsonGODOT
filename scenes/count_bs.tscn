@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://5bhy234ee0or"]
+
+[ext_resource type="PackedScene" uid="uid://bsvrktgmv2lll" path="res://scenes/count.tscn" id="1_lribx"]
+[ext_resource type="Script" uid="uid://c3upxft1wudoa" path="res://scenes/count_bm.gd" id="2_jfsr1"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=572902583]
+
+[node name="Count" parent="." unique_id=956128208 instance=ExtResource("1_lribx")]
+offset_left = 1.0
+offset_top = 107.0
+offset_right = 488.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "ЗАМОЧЕНО Big Smokov: "
+script = ExtResource("2_jfsr1")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://br6ikkd8r5on"
+path="res://.godot/imported/Skrillex - Bangarang.mp3-9c529a05bf9ae54bebff949681760caf.mp3str"
+
+[deps]
+
+source_file="res://Skrillex - Bangarang.mp3"
+dest_files=["res://.godot/imported/Skrillex - Bangarang.mp3-9c529a05bf9ae54bebff949681760caf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

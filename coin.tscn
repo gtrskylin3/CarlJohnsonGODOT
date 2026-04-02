@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://suo6rdnsqejx"]
+
+[ext_resource type="PackedScene" uid="uid://x1ngawc0hncx" path="res://assets/FBX/Coin.fbx" id="1_d5gmh"]
+
+[node name="Coin" unique_id=380735859 instance=ExtResource("1_d5gmh")]

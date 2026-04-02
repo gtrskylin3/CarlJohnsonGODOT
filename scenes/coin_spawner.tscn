@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d07ngk1hqq3ae"]
+
+[ext_resource type="Script" uid="uid://cihcm36qc3kdk" path="res://scenes/coin_spawner.gd" id="1_yjdd8"]
+
+[node name="CoinSpawner" type="Node3D" unique_id=671817912]
+script = ExtResource("1_yjdd8")

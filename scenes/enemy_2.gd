@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 	# === ИСПРАВЛЕННЫЙ ПОВОРОТ ===
 	if velocity.length() > 0.5:
 		var target_angle = atan2(velocity.x, velocity.z)
-		target_angle += PI          # ← Вот эта строчка решает проблему "спиной вперёд"
 		M_Body.rotation.y = lerp_angle(M_Body.rotation.y, target_angle, delta * 10.0)
 	
 	move_and_slide()
@@ -65,8 +64,6 @@ func die() -> void:
 	
 	
 func change_state(new_state: States) -> void:
-	if state == new_state:
-		return
 	state = new_state
 	
 	# Здесь можно запускать разные анимации при смене состояния
@@ -155,4 +152,4 @@ func _on_hit_box_body_entered(body: Node3D) -> void:
 
 func _on_player_2_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		change_state(States.PATROL)
+		change_state(States.ATTACK)

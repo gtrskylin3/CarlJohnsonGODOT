@@ -11,16 +11,42 @@ var kills_bs: int = 0
 signal kills_bs_updated(new_count)
 signal health_updated(new_health) # Сигнал для интерфейса
 
+var is_reloading: bool = false # Флаг, чтобы не запускать перезагрузку дважды
+
 func update_health(amount: int):
+	# Если мы уже "умираем", урон больше не считаем
+	if is_reloading: return 
+	
 	player_health += amount
-	# Можно добавить проверку, чтобы HP не уходило в минус
-	if player_health < 0: player_health = 0
-	
-	health_updated.emit(player_health) # Оповещаем UI
-	
 	if player_health <= 0:
-		health_updated.emit("СМЕРТЬ")
-		get_tree().reload_current_scene()
+		player_health = 0
+		die() # Выносим логику смерти в отдельный метод
+	
+	health_updated.emit(player_health)
+
+func die():
+	is_reloading = true
+	health_updated.emit(0) # Отправляем UI сигнал "СМЕРТЬ"
+	
+	# Ждем 3 секунды
+	await get_tree().create_timer(3.0).timeout
+	
+	# Сначала сбрасываем данные
+	reset_game_stats()
+	
+	# Потом меняем сцену (безопасным методом)
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/World.tscn")
+	
+	is_reloading = false
+
+func reset_game_stats():
+	player_health = 100
+	kills = 0
+	kills_bs = 0
+	total_coins = 0
+	# Оповещаем UI, что всё обнулилось (по желанию)
+	kills_updated.emit(0)
+	coins_updated.emit(0)
 
 func add_coin(amount: int):
 	total_coins += amount

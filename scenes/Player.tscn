@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://da42ihvuf43uc" path="res://wallpaperflare.com_wallpaper (21).png" id="10_d3wef"]
 [ext_resource type="AudioStream" uid="uid://bofwve8spgv7o" path="res://assets/2ac4f20e0936336.mp3" id="11_d3wef"]
 [ext_resource type="Script" uid="uid://b1cyk8mdtrq2e" path="res://scenes/health.gd" id="11_o4126"]
+[ext_resource type="Texture2D" uid="uid://chkb1cbj545l7" path="res://assets/FBX/images (2).png" id="12_lkdrv"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bruh7"]
 states/Start/position = Vector2(199.2, 100.159996)
@@ -86,6 +87,15 @@ offset_bottom = 173.0
 theme_override_colors/font_color = Color(1, 0.3647059, 1, 1)
 theme_override_font_sizes/font_size = 40
 script = ExtResource("11_o4126")
+
+[node name="death" type="TextureRect" parent="CanvasLayer/Health" unique_id=773290078]
+layout_mode = 0
+offset_left = -1313.0
+offset_top = -145.0
+offset_right = -1013.0
+offset_bottom = 23.0
+scale = Vector2(6.4376802, 6.7046056)
+texture = ExtResource("12_lkdrv")
 
 [node name="attacksound" type="AudioStreamPlayer" parent="." unique_id=679612071]
 stream = ExtResource("11_d3wef")

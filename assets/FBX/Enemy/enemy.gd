@@ -194,9 +194,9 @@ func _on_player_2_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		if choices.pick_random() in [1,2,3]:
 			M_Anim.play("Roar", 0.1, 1.5)
-			audio.play()
 			if body.has_method("take_damage"):
 				body.take_damage(5)
+			audio.play()
 			await get_tree().create_timer(M_Anim.get_animation("Roar").length-4).timeout
 			is_roaring = true
 		change_state(States.ATTACK)

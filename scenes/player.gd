@@ -16,6 +16,7 @@ var current_anim: String = ""
 var attack_cooldown: float = 0.0
 const ATTACK_DAMAGE: int = 3
 const ATTACK_RATE: float = 0.6   # время между атаками (в секундах)
+var health: int = 100
 
 func _ready() -> void:
 	# ВКЛЮЧАЕМ РЕЖИМ ЗАХВАТА: мышь исчезает и не упирается в края экрана
@@ -109,6 +110,21 @@ func perform_raycast_attack() -> void:
 			enemy.health -= ATTACK_DAMAGE
 			if enemy.health <= 0:
 				enemy.queue_free()
+
+# В конец скрипта игрока
+# --- В скрипте игрока ---
+
+func take_damage(amount: int) -> void:
+	# Уменьшаем здоровье через менеджер
+	GameManager.update_health(-amount) 
+	
+	# Проигрываем звук (он у вас в @onready var damage_sound)
+	if damage_sound:
+		damage_sound.play()
+
+func die() -> void:
+	# Ваша логика смерти (перезагрузка сцены или экран смерти)
+	get_tree().reload_current_scene()
 
 func update_animations(direction: Vector3) -> void:
 	var next_anim := "Idle/mixamo_com"

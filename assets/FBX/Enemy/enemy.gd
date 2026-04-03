@@ -8,13 +8,13 @@ var health: int = 3
 var patrol_target: Vector3
 var choices = [1, 2, 3, 4, 5, 6]
 
-@export_range(0, 100, 1) var SPEED: int = 5
+@export_range(0, 100, 1) var SPEED: int = 3.5
 @export_range(0.0, 10.0, 0.1) var Idle_Time: float = 2.0
 
 @onready var M_Body = $Visuals/zombie
 @onready var audio = $AudioStreamPlayer3D
 @onready var M_Anim = $Visuals/zombie/AnimationPlayer
-@export var JUMP_VELOCITY: float = 8
+@export var JUMP_VELOCITY: float = 5
 @export var Patrol_Start: Vector3
 @export var min_distance_to_other_enemies: float = 1.5
 @export var separation_speed: float = 3.0
@@ -22,6 +22,7 @@ var choices = [1, 2, 3, 4, 5, 6]
 
 var current_patrol_point := 0
 var idle_timer: float = 0.0
+var is_roaring: bool
 
 func _ready() -> void:
 	# Если не заданы точки патруля — используем текущую позицию как старт
@@ -35,6 +36,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_roaring:
+		change_state(States.ATTACK)
 	match state:
 		States.IDLE:
 			idle_state(delta)
@@ -97,8 +100,6 @@ func die() -> void:
 	
 	
 func change_state(new_state: States) -> void:
-	if state == new_state:
-		return
 	state = new_state
 	
 	# Здесь можно запускать разные анимации при смене состояния
@@ -111,7 +112,9 @@ func change_state(new_state: States) -> void:
 			anim.loop_mode = Animation.LOOP_LINEAR # Включает цикл
 			M_Anim.play("Walk")
 		States.ATTACK:
-			pass
+			var anim = M_Anim.get_animation("Walk")
+			anim.loop_mode = Animation.LOOP_LINEAR # Включает цикл
+			M_Anim.play("Walk")
 
 
 # ====================== СОСТОЯНИЯ ======================
@@ -187,19 +190,13 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		target = null
 		change_state(States.IDLE)
 
-
-func _on_hit_box_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		# Пример: отбрасывание игрока
-		if body.has_method("take_damage") or "velocity" in body:
-			body.velocity.y = 8
-		self.queue_free()  # враг умирает при касании (можно изменить)
-
-
 func _on_player_2_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		if choices.pick_random() in [1,2,3]:
 			M_Anim.play("Roar", 0.1, 1.5)
 			audio.play()
+			if body.has_method("take_damage"):
+				body.take_damage(5)
 			await get_tree().create_timer(M_Anim.get_animation("Roar").length-4).timeout
-		change_state(States.PATROL)
+			is_roaring = true
+		change_state(States.ATTACK)

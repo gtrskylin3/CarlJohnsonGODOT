@@ -6,7 +6,7 @@ func _ready() -> void:
 	# Если игра была на паузе, титры должны работать (установи Process Mode в Always в инспекторе)
 
 func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/end.tscn")
 	# 1. Скрываем слой с титрами
-	get_tree().change_scene_to_file("res://scenes/End.tscn")
 	# 3. ВАЖНО: Если ты ставил игру на паузу при показе титров, ее нужно снять
 	

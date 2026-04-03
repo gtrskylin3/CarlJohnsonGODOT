@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://rmt36mmvhghp" path="res://assets/FBX/Star.fbx" id="7_0uv0p"]
 [ext_resource type="PackedScene" uid="uid://38y8o377xicm" path="res://assets/FBX/Tree1.fbx" id="7_b3faq"]
 [ext_resource type="PackedScene" uid="uid://c4ewcucbbcceu" path="res://assets/FBX/MovingPlatform.fbx" id="8_b3faq"]
+[ext_resource type="Script" uid="uid://b3pwgjx3woxb0" path="res://assets/FBX/star.gd" id="9_30fn3"]
 [ext_resource type="PackedScene" uid="uid://dbp7nc7eaq31i" path="res://assets/FBX/Cloud1.fbx" id="9_ygioq"]
 [ext_resource type="PackedScene" uid="uid://dtkj2plne3tnl" path="res://assets/FBX/Fence.fbx" id="11_h1bdy"]
 [ext_resource type="PackedScene" uid="uid://br2nqg2povlgt" path="res://assets/FBX/Flag.fbx" id="12_nrtoj"]
@@ -51,9 +52,6 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=1228566002 groups=["player"] instance=ExtResource("1_kqs1s")]
 transform = Transform3D(0.9993907, 0, -0.03489949, 0, 1, 0, 0.03489949, 0, 0.9993907, -2.3967772, 0.016373694, 7.1379466)
 
-[node name="Tree4" parent="." unique_id=1097638288 instance=ExtResource("2_32lhk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22819865, 0.39959443, 9.284869)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1159995252]
 transform = Transform3D(520.7501, 0, 0, 0, 1, 0, 0, 0, 900.0878, -1.094383, -0.48260903, 0.8343898)
 mesh = SubResource("BoxMesh_d1c63")
@@ -61,6 +59,9 @@ mesh = SubResource("BoxMesh_d1c63")
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1842957778]
 transform = Transform3D(122.2416, 0, 0, 0, 1, 0, 0, 0, 133.76328, 0, -0.5309247, 71.79145)
 use_collision = true
+
+[node name="Tree4" parent="." unique_id=1097638288 instance=ExtResource("2_32lhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22819865, 0.007634163, 9.284869)
 
 [node name="Map" type="Node3D" parent="." unique_id=1024534093]
 
@@ -126,21 +127,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1299887, -0.19365025, 4.649
 
 [node name="Star" parent="Map" unique_id=1202497293 instance=ExtResource("7_0uv0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.528623, 11.075159, 89.82648)
+script = ExtResource("9_30fn3")
 
 [node name="Star2" parent="Map" unique_id=801499977 instance=ExtResource("7_0uv0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7747135, 11.542451, 91.80955)
+script = ExtResource("9_30fn3")
 
 [node name="Star3" parent="Map" unique_id=1415149058 instance=ExtResource("7_0uv0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.955862, 12.106122, 92.86434)
+script = ExtResource("9_30fn3")
 
 [node name="Star4" parent="Map" unique_id=1481971749 instance=ExtResource("7_0uv0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.137017, 11.720171, 94.189835)
+script = ExtResource("9_30fn3")
 
 [node name="Fence" parent="Map" unique_id=1605049331 instance=ExtResource("11_h1bdy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4513607, 0.052336164, 5.3278627)
 
 [node name="Fence2" parent="Map/Fence" unique_id=844982229 instance=ExtResource("11_h1bdy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.229323, 0.03362804, -0.035871506)
+
+[node name="Fence2" parent="Map/Fence/Fence2" unique_id=1658520717 instance=ExtResource("11_h1bdy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.287795, 0.03362804, 0.057552338)
+
+[node name="Fence2" parent="Map/Fence/Fence2/Fence2" unique_id=783213607 instance=ExtResource("11_h1bdy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.281396, 0.03362804, -0.035871506)
+
+[node name="Fence2" parent="Map/Fence/Fence2/Fence2/Fence2" unique_id=320995561 instance=ExtResource("11_h1bdy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.351303, 0.03362803, -0.035871506)
 
 [node name="Fence3" parent="Map/Fence" unique_id=587049656 instance=ExtResource("11_h1bdy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1161194, 0.007928185, -0.036293983)
@@ -197,9 +211,10 @@ autoplay = true
 parameters/looping = true
 
 [node name="Spawner" parent="." unique_id=239191264 instance=ExtResource("14_c0d7e")]
-transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, -0.0017045467, -6.9452024, 5.8970604, 47.800415)
+transform = Transform3D(1, 0, 0, 0, 2.8836813, 0, 0, 0, -0.0017045467, -6.9452024, 19.993097, 86.16415)
 enemy_scene = ExtResource("3_7g83o")
 spawn_radius = 20.0
+min_distance_to_other_enemies = 20.0
 
 [node name="countLayer" parent="." unique_id=1055130271 instance=ExtResource("16_o1tcx")]
 
